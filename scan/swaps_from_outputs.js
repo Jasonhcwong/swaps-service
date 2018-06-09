@@ -1,7 +1,7 @@
 const {address} = require('bitcoinjs-lib');
 const asyncAuto = require('async/auto');
 const asyncMap = require('async/map');
-const {networks} = require('bitcoinjs-lib');
+const {networks} = require('./../chain');
 const {Transaction} = require('bitcoinjs-lib');
 
 const {addressDetails} = require('./../chain');

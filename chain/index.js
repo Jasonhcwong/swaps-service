@@ -13,6 +13,7 @@ const getMempool = require('./get_mempool');
 const getTransaction = require('./get_transaction');
 const spawnChainDaemon = require('./spawn_chain_daemon');
 const stopChainDaemon = require('./stop_chain_daemon');
+const networks = require('./networks');
 
 module.exports = {
   addressDetails,
@@ -30,5 +31,6 @@ module.exports = {
   getTransaction,
   spawnChainDaemon,
   stopChainDaemon,
+  networks,
 };
 

@@ -1,7 +1,7 @@
 const {address} = require('bitcoinjs-lib');
 const {crypto} = require('bitcoinjs-lib');
 const {ECPair} = require('bitcoinjs-lib');
-const {networks} = require('bitcoinjs-lib');
+const networks = require('./networks');
 const {script} = require('bitcoinjs-lib');
 
 const {testnet} = networks;

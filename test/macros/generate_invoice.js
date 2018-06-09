@@ -2,7 +2,7 @@ const {createHash} = require('crypto');
 const {ECPair} = require('bitcoinjs-lib');
 const {encode} = require('bolt11');
 const {sign} = require('bolt11');
-const {testnet} = require('bitcoinjs-lib').networks;
+const {testnet} = require('./../chain').networks;
 const uuidv4 = require('uuid/v4');
 
 const preimageByteCount = 32;

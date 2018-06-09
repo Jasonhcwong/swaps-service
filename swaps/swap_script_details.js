@@ -1,6 +1,6 @@
 const {address} = require('bitcoinjs-lib');
 const {crypto} = require('bitcoinjs-lib');
-const {networks} = require('bitcoinjs-lib');
+const {networks} = require('./../chain');
 const {script} = require('bitcoinjs-lib');
 
 const {hash160} = crypto;

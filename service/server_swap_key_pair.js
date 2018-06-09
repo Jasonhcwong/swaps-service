@@ -3,7 +3,7 @@ const {crypto} = require('bitcoinjs-lib');
 const {generateMnemonic} = require('bip39');
 const {HDNode} = require('bitcoinjs-lib');
 const {mnemonicToSeed} = require('bip39');
-const {networks} = require('bitcoinjs-lib');
+const {networks} = require('./../chain');
 const {script} = require('bitcoinjs-lib');
 const {validateMnemonic} = require('bip39');
 

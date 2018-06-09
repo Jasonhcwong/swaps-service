@@ -1,5 +1,5 @@
 const {ECPair} = require('bitcoinjs-lib');
-const {networks} = require('bitcoinjs-lib');
+const networks = require('./networks');
 const removeDir = require('rimraf');
 const {spawn} = require('child_process');
 const uuidv4 = require('uuid/v4');

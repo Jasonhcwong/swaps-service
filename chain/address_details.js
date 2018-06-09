@@ -1,5 +1,5 @@
 const {address} = require('bitcoinjs-lib');
-const {networks} = require('bitcoinjs-lib');
+const networks = require('./networks');
 
 const publicKeyHashLength = 20;
 

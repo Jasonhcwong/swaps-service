@@ -1,5 +1,5 @@
 const {ECPair} = require('bitcoinjs-lib');
-const {networks} = require('bitcoinjs-lib');
+const {networks} = require('./../chain');
 const {TransactionBuilder} = require('bitcoinjs-lib');
 
 const {testnet} = networks;
