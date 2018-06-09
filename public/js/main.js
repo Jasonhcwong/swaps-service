@@ -121,10 +121,6 @@ App.changedInvoice = function({}) {
 
     App.invoice_details[invoice] = details;
 
-    const keyPair = blockchain.generateKeyPair({network: 'testnet'});
-
-    App.invoice_refund_keypairs[invoice] = keyPair;
-
     App.showInvoice({invoice, swap});
 
     App.updatedSwapDetails({swap});
@@ -601,7 +597,7 @@ App.getInvoiceDetails = ({invoice}, cbk) => {
         throw new Error('ExpectedUnexpiredInvoice');
       }
 
-      if (details.network !== 'testnet') {
+      if (details.network !== 'testnet' && details.network !== 'ltctestnet' ) {
         throw new Error('ExpectedIsTestnet');
       }
 
@@ -804,9 +800,19 @@ App.showInvoice = args => {
     symbolForNetwork = 'tBTC';
     break;
 
+  case 'ltctestnet':
+    symbolForFiat = 'tUSD';
+    symbolForNetwork = 'tLTC';
+    break;
+
   case 'bitcoin':
     symbolForFiat = 'USD';
     symbolForNetwork = 'BTC';
+    break;
+
+  case 'litecoin':
+    symbolForFiat = 'USD';
+    symbolForNetwork = 'LTC';
     break;
 
   default:
@@ -867,13 +873,20 @@ App.submitCreateSwapQuote = function(event) {
 
   $('.quotes').prepend(quote);
 
+  const currency = $('.select-currency').find(':selected').val();
+  const network = currency === 'tBTC' ? 'testnet' : 'ltctestnet';
+
+  const keyPair = blockchain.generateKeyPair({network: network});
+
+  App.invoice_refund_keypairs[invoice] = keyPair;
+
   const refundKey = App.invoice_refund_keypairs[invoice];
 
   const refundAddress = !isPaperWallet ? address : refundKey.p2pkh_address;
 
   return App.createSwap({
     invoice,
-    currency: 'tBTC',
+    currency: currency,
     refund_address: refundAddress,
   },
   (err, details) => {

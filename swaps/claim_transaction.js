@@ -18,7 +18,7 @@ const encodeScriptHash = script.scriptHash.output.encode;
 const {hash160} = crypto;
 const hashAll = Transaction.SIGHASH_ALL;
 const {sha256} = crypto;
-const {testnet} = networks;
+const {ltctestnet} = networks;
 const {toOutputScript} = address;
 const {witnessScriptHash} = script;
 
@@ -82,7 +82,7 @@ module.exports = args => {
   }
 
   const preimage = Buffer.from(args.preimage, 'hex');
-  const signingKey = ECPair.fromWIF(args.private_key, testnet);
+  const signingKey = ECPair.fromWIF(args.private_key, ltctestnet);
   const tokens = args.utxos.reduce((sum, n) => n.tokens + sum, 0);
   const tokensPerVirtualByte = args.fee_tokens_per_vbyte;
   const tx = new Transaction();
@@ -92,7 +92,7 @@ module.exports = args => {
     .map(n => ({txId: Buffer.from(n.transaction_id, 'hex'), vout: n.vout}))
     .forEach(n => tx.addInput(n.txId.reverse(), n.vout));
 
-  tx.addOutput(toOutputScript(args.destination, testnet), tokens);
+  tx.addOutput(toOutputScript(args.destination, ltctestnet), tokens);
   tx.ins.forEach(n => n.sequence = minSequenceValue);
   tx.locktime = bip65Encode({blocks: args.current_block_height});
 

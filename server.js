@@ -24,7 +24,7 @@ const morganLogLevel = 'dev';
 const port = PORT || SSS_PORT || 9889;
 
 const app = express();
-const scanner = swapScanner({cache: 'memory', network: 'testnet'});
+const scanner = swapScanner({cache: 'memory', network: 'ltctestnet'});
 
 scanner.on('claim', swap => {
   console.log('SWAP CLAIMED', swap);

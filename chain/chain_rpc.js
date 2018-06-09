@@ -17,10 +17,10 @@ const testnetRpcPass = SSS_CHAIN_RPC_PASS;
 const testnetRpcUser = SSS_CHAIN_RPC_USER || 'bitcoinrpc';
 
 const credentials = {
-  host: {regtest: regtestRpcHost, testnet: testnetRpcHost},
-  pass: {regtest: regtestRpcPass, testnet: testnetRpcPass},
-  port: {regtest: regtestRpcPort, testnet: testnetRpcPort},
-  user: {regtest: regtestRpcUser, testnet: testnetRpcUser},
+  host: {regtest: regtestRpcHost, testnet: testnetRpcHost, ltctestnet: '127.0.0.1'},
+  pass: {regtest: regtestRpcPass, testnet: testnetRpcPass, ltctestnet: 'litecoin_testnet'},
+  port: {regtest: regtestRpcPort, testnet: testnetRpcPort, ltctestnet: '19332'},
+  user: {regtest: regtestRpcUser, testnet: testnetRpcUser, ltctestnet: 'jason'},
 };
 
 let pauseOnErrorDate;

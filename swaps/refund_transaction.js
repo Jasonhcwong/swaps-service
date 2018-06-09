@@ -16,7 +16,7 @@ const swapScriptDetails = require('./swap_script_details');
 
 const {SIGHASH_ALL} = Transaction;
 const {sha256} = crypto;
-const {testnet} = networks;
+const {ltctestnet} = networks;
 const {toOutputScript} = address;
 const {witnessScriptHash} = script;
 
@@ -80,7 +80,7 @@ module.exports = args => {
   const tokensPerVirtualByte = args.fee_tokens_per_vbyte;
   const tx = new Transaction();
 
-  tx.addOutput(toOutputScript(args.destination, testnet), tokens);
+  tx.addOutput(toOutputScript(args.destination, ltctestnet), tokens);
 
   // Plug all the utxos into the transaction as inputs
   args.utxos
@@ -122,7 +122,7 @@ module.exports = args => {
 
   // The public key buffer is stubbed all zeros when there is no private key
   if (!!args.private_key) {
-    pubKey = ECPair.fromWIF(args.private_key, testnet).getPublicKeyBuffer();
+    pubKey = ECPair.fromWIF(args.private_key, ltctestnet).getPublicKeyBuffer();
   } else {
     pubKey = Buffer.alloc(compressedPubKeySize);
   }
@@ -205,7 +205,7 @@ module.exports = args => {
     return {transaction: tx.toHex()};
   }
 
-  const signingKey = ECPair.fromWIF(args.private_key, testnet);
+  const signingKey = ECPair.fromWIF(args.private_key, ltctestnet);
 
   // Set legacy p2sh signatures
   args.utxos.forEach(({redeem, script}, i) => {

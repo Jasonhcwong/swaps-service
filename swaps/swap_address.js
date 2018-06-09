@@ -7,7 +7,7 @@ const {fromOutputScript} = address;
 const encodeScriptHash = script.scriptHash.output.encode;
 const {hash160} = crypto;
 const {sha256} = crypto;
-const {testnet} = networks;
+const {ltctestnet} = networks;
 const {witnessScriptHash} = script;
 
 const pkSwapScript = require('./pk_swap_script');
@@ -70,14 +70,14 @@ module.exports = args => {
   // When wrapping for legacy p2sh, the program is hashed more and with RIPE160
   const p2shWrappedWitnessProgram = encodeScriptHash(hash160(witnessProgram));
 
-  const p2shNestedAddr = fromOutputScript(p2shWrappedWitnessProgram, testnet);
+  const p2shNestedAddr = fromOutputScript(p2shWrappedWitnessProgram, ltctestnet);
 
   return {
-    p2sh_address: fromOutputScript(p2shLegacyOutput, testnet),
+    p2sh_address: fromOutputScript(p2shLegacyOutput, ltctestnet),
     p2sh_output_script: p2shLegacyOutput.toString('hex'),
     p2sh_p2wsh_output_script: p2shWrappedWitnessProgram.toString('hex'),
     p2sh_p2wsh_address: p2shNestedAddr,
-    p2wsh_address: fromOutputScript(witnessProgram, testnet),
+    p2wsh_address: fromOutputScript(witnessProgram, ltctestnet),
     redeem_script: redeemScriptHex.toString('hex'),
     witness_output_script: witnessProgram.toString('hex'),
   };

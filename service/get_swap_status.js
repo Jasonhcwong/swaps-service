@@ -13,7 +13,7 @@ const {swapScriptDetails} = require('./../swaps');
 
 const blockSearchDepth = 9;
 const minBlocksUntilRefundHeight = 70;
-const network = 'testnet';
+const network = 'ltctestnet';
 const requiredConfCount = 1;
 const swapRate = 0.015;
 
@@ -139,8 +139,8 @@ module.exports = ({cache, invoice, script}, cbk) => {
       const {tokens} = invoiceDetails;
 
       return findSwapTransaction({
-        cache,
-        network,
+        cache: cache,
+        network: network,
         block_search_depth: blockSearchDepth,
         destination_public_key: swapDetails.destination_public_key,
         payment_hash: invoiceDetails.id,

@@ -15,6 +15,9 @@ const {returnResult} = require('./../async-util');
 const {setJsonInCache} = require('./../cache');
 const {swapScriptInTransaction} = require('./../swaps');
 
+const {SSS_LTC_TESTNET_SWEEP_ADDR} = process.env;
+const ltc_testnet_sweep_addr = SSS_LTC_TESTNET_SWEEP_ADDR || 'QS4UPyQVyfvfzzsdZz7W7jGsgi5XSeJKYN';
+
 const swapSuccessCacheMs = 1000 * 60 * 60 * 3;
 
 /** Complete a swap transaction
@@ -142,7 +145,6 @@ module.exports = (args, cbk) => {
     // Make a new address to sweep out the funds to
     getSweepAddress: [
       'checkRoutes',
-      'createLockingInvoice',
       'lnd',
       ({lnd}, cbk) =>
     {
@@ -163,10 +165,11 @@ module.exports = (args, cbk) => {
       'payInvoice',
       (res, cbk) =>
     {
+        const sweepAddress = args.network === 'ltctestnet' ? ltc_testnet_sweep_addr : res.getSweepAddress.address;
       try {
         return cbk(null, claimTransaction({
           current_block_height: res.getBlockchainInfo.current_height,
-          destination: res.getSweepAddress.address,
+          destination: sweepAddress,
           fee_tokens_per_vbyte: res.getFee.fee_tokens_per_vbyte,
           preimage: res.payInvoice.payment_secret,
           private_key: args.private_key,

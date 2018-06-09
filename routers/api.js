@@ -8,7 +8,7 @@ const {getAddressDetails} = require('./../service');
 const {getInvoiceDetails} = require('./../service');
 const {returnJson} = require('./../async-util');
 
-const maxInvoiceFeeRate = 0.005;
+const maxInvoiceFeeRate = 0.5;
 
 /** Make an api router
 
@@ -45,7 +45,7 @@ module.exports = ({log}) => {
   // POST a swap output find details request
   router.post('/swap_outputs/', ({body}, res) => {
     return findSwapOutpoint({
-      network: 'testnet',
+      network: 'ltctestnet',
       redeem_script: body.redeem_script,
     },
     returnJson({log, res}));
@@ -67,7 +67,7 @@ module.exports = ({log}) => {
     return checkSwapStatus({
       cache: 'memory',
       invoice: body.invoice,
-      network: 'testnet',
+      network: 'ltctestnet',
       script: body.redeem_script,
     },
     returnJson({log, res}));

@@ -8,7 +8,7 @@ const serverSwapKeyPair = require('./server_swap_key_pair');
 const {swapAddress} = require('./../swaps');
 const {watchSwapOutput} = require('./../scan');
 
-const network = 'testnet';
+const network = 'ltctestnet';
 const swapRate = 0.015;
 const timeoutBlockCount = 144;
 
@@ -59,7 +59,7 @@ module.exports = (args, cbk) => {
         return cbk([400, 'ExpectedCacheToPlaceCreatedSwap']);
       }
 
-      if (args.currency !== 'tBTC') {
+      if (args.currency !== 'tBTC' && args.currency !== 'tLTC') {
         return cbk([400, 'ExpectedKnownCurrency']);
       }
 
