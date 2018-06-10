@@ -759,7 +759,7 @@ App.presentCompletedSwap = args => {
   <QR Code Img Object>
 */
 App.qrCode = ({address, amount}) => {
-  const addressLink = `bitcoin:${address}?amount=${amount}`;
+  const addressLink = `litecoin:${address}?amount=${amount}`;
   const back = 'rgb(250, 250, 250)';
   const rounded = 100;
   const size = 300;
